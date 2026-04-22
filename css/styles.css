@@ -254,7 +254,7 @@ button {
    NAVIGATION
    ============================================================ */
 
-nav {
+#navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -269,7 +269,7 @@ nav {
   transition: background var(--transition-smooth), backdrop-filter var(--transition-smooth);
 }
 
-nav.scrolled {
+#navbar.scrolled {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -288,7 +288,7 @@ nav.scrolled {
   transition: color var(--transition-smooth);
 }
 
-nav.scrolled .nav-logo {
+#navbar.scrolled .nav-logo {
   color: var(--navy);
 }
 
@@ -309,7 +309,7 @@ nav.scrolled .nav-logo {
   transition: color var(--transition-fast);
 }
 
-nav.scrolled .nav-links a {
+#navbar.scrolled .nav-links a {
   color: var(--text-secondary);
 }
 
@@ -337,12 +337,12 @@ nav.scrolled .nav-links a {
   border-color: var(--gold-dark);
 }
 
-nav.scrolled .btn-quote {
+#navbar.scrolled .btn-quote {
   background: var(--navy);
   border-color: var(--navy);
 }
 
-nav.scrolled .btn-quote:hover {
+#navbar.scrolled .btn-quote:hover {
   background: var(--navy-mid);
   border-color: var(--navy-mid);
 }
@@ -369,7 +369,7 @@ nav.scrolled .btn-quote:hover {
     color: var(--white);
   }
 
-  nav.scrolled .nav-hamburger {
+  #navbar.scrolled .nav-hamburger {
     color: var(--navy);
   }
 
@@ -381,11 +381,11 @@ nav.scrolled .btn-quote:hover {
     display: none;
   }
 
-  nav {
+  #navbar {
     padding: 16px 20px;
   }
 
-  nav.scrolled {
+  #navbar.scrolled {
     padding: 12px 20px;
   }
 
