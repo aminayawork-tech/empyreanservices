@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Empyrean Services — White Glove Delivery &amp; Installation, NYC</title>
+  <meta name="description" content="Premium white glove delivery and furniture installation services trusted by New York City's finest interior designers and luxury design firms." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#home" class="nav-logo" aria-label="Empyrean Services — Home">EMPYREAN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#designers">For Designers</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#quote" class="btn-quote">Get a Quote</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="home" aria-label="Hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-bg-layer hero-bg-base"></div>
+      <div class="hero-bg-layer hero-bg-glow"></div>
+      <div class="hero-bg-layer hero-bg-room"></div>
+      <div class="hero-bg-layer hero-bg-light"></div>
+      <div class="hero-bg-layer hero-bg-vignette"></div>
+    </div>
+
+    <!-- Decorative right panel — simulates editorial interior photo -->
+    <aside class="hero-photo-panel" aria-hidden="true">
+      <div class="hero-photo-inner">
+        <div class="hero-photo-room-light"></div>
+        <div class="hero-photo-furniture"></div>
+      </div>
+      <div class="hero-photo-caption">
+        <span class="caption-line"></span>
+        Tribeca Penthouse &nbsp;·&nbsp; 2024
+      </div>
+    </aside>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        White Glove Specialists &nbsp;·&nbsp; New York City
+      </p>
+      <h1 class="hero-headline">
+        White Glove<br />
+        Delivery,<br />
+        <em>Elevated.</em>
+      </h1>
+      <p class="hero-sub">
+        Premium delivery &amp; installation services trusted by New York's finest
+        interior designers and luxury design firms — since 2016.
+      </p>
+      <div class="hero-ctas">
+        <a href="#quote" class="btn btn-gold">
+          Request a Quote
+          <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#portfolio" class="btn btn-ghost">See Our Work</a>
+      </div>
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="scroll-track"><div class="scroll-thumb"></div></div>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TRUST BAR
+  ============================================================ -->
+  <div class="trust-bar" role="complementary" aria-label="Trust indicators">
+    <div class="trust-bar-inner">
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>200+ Design Firms Served</span>
+      </div>
+      <div class="trust-sep" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Fully Insured &amp; Licensed</span>
+      </div>
+      <div class="trust-sep" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <span>White Glove Trained Specialists</span>
+      </div>
+      <div class="trust-sep" aria-hidden="true"></div>
+      <div class="trust-item">
+        <svg class="trust-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span>98% On-Time Delivery Rate</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SERVICES
+  ============================================================ -->
+  <section class="section services" id="services">
+    <div class="container">
+      <header class="section-header">
+        <p class="eyebrow"><span class="eyebrow-line"></span>What We Do</p>
+        <h2 class="section-title">Precision at Every Step</h2>
+        <p class="section-sub">
+          From the warehouse floor to the final placement, every piece is handled
+          with the care your clients' spaces deserve.
+        </p>
+      </header>
+    </div>
+
+    <div class="services-grid">
+      <!-- 01 -->
+      <article class="service-card" data-delay="0">
+        <div class="service-card-inner">
+          <div class="service-num" aria-hidden="true">01</div>
+          <div class="service-icon-wrap" aria-hidden="true">
+            <svg class="service-icon" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3 class="service-title">White Glove Delivery</h3>
+          <p class="service-desc">
+            Careful, padded, and fully insured delivery of your most precious
+            furnishings — handled by trained specialists who understand luxury.
+          </p>
+          <a href="#quote" class="service-link" aria-label="Learn more about White Glove Delivery">
+            Learn More
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="service-card" data-delay="80">
+        <div class="service-card-inner">
+          <div class="service-num" aria-hidden="true">02</div>
+          <div class="service-icon-wrap" aria-hidden="true">
+            <svg class="service-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="service-title">Furniture Installation</h3>
+          <p class="service-desc">
+            Expert assembly and placement of complex systems, bespoke pieces,
+            and custom cabinetry — aligned to your exact specifications.
+          </p>
+          <a href="#quote" class="service-link" aria-label="Learn more about Furniture Installation">
+            Learn More
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="service-card" data-delay="160">
+        <div class="service-card-inner">
+          <div class="service-num" aria-hidden="true">03</div>
+          <div class="service-icon-wrap" aria-hidden="true">
+            <svg class="service-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <h3 class="service-title">Art &amp; Accessory Handling</h3>
+          <p class="service-desc">
+            Museum-grade care for fine art, sculptures, mirrors, and fragile
+            accessories. Precise mounting, leveling, and placement.
+          </p>
+          <a href="#quote" class="service-link" aria-label="Learn more about Art and Accessory Handling">
+            Learn More
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- 04 -->
+      <article class="service-card" data-delay="240">
+        <div class="service-card-inner">
+          <div class="service-num" aria-hidden="true">04</div>
+          <div class="service-icon-wrap" aria-hidden="true">
+            <svg class="service-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 class="service-title">Designer Move-In</h3>
+          <p class="service-desc">
+            Complete project-day support — coordinating deliveries, managing
+            receiving, and staging entire residences for the perfect reveal.
+          </p>
+          <a href="#quote" class="service-link" aria-label="Learn more about Designer Move-In Services">
+            Learn More
+            <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY EMPYREAN
+  ============================================================ -->
+  <section class="section why-section" id="about">
+    <div class="container why-layout">
+
+      <!-- Left — visual column -->
+      <div class="why-visual" aria-hidden="true">
+        <div class="why-photo-main">
+          <div class="why-photo-light"></div>
+          <div class="why-photo-detail why-photo-detail-a"></div>
+          <div class="why-photo-detail why-photo-detail-b"></div>
+        </div>
+        <div class="why-stat-box">
+          <div class="why-stat-num">98%</div>
+          <div class="why-stat-lbl">On-Time<br />Delivery Rate</div>
+        </div>
+        <div class="why-stat-box-2">
+          <div class="why-stat-num">8+</div>
+          <div class="why-stat-lbl">Years<br />in NYC</div>
+        </div>
+      </div>
+
+      <!-- Right — copy column -->
+      <div class="why-copy reveal-group">
+        <p class="eyebrow reveal-item"><span class="eyebrow-line"></span>Why Empyrean</p>
+        <h2 class="section-title reveal-item">
+          The Standard You<br />Expect. Delivered.
+        </h2>
+        <p class="section-sub reveal-item">
+          We built Empyrean from the ground up to serve one client: the luxury
+          interior designer who demands excellence and accepts nothing less.
+        </p>
+
+        <div class="benefits-grid reveal-item">
+          <div class="benefit">
+            <div class="benefit-icon-wrap" aria-hidden="true">
+              <svg class="benefit-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">On-Time, Every Time</div>
+              <div class="benefit-desc">Precision scheduling that respects your project timeline and your clients' lives.</div>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon-wrap" aria-hidden="true">
+              <svg class="benefit-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">Fully Insured</div>
+              <div class="benefit-desc">Comprehensive coverage for every item we handle, from transit to final placement.</div>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon-wrap" aria-hidden="true">
+              <svg class="benefit-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">White Glove Trained</div>
+              <div class="benefit-desc">Every specialist trained in luxury handling protocols and building etiquette.</div>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon-wrap" aria-hidden="true">
+              <svg class="benefit-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">NYC Specialists</div>
+              <div class="benefit-desc">Deep knowledge of Manhattan buildings, service elevators, and city logistics.</div>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon-wrap" aria-hidden="true">
+              <svg class="benefit-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">Dedicated Team</div>
+              <div class="benefit-desc">The same specialists from first delivery to final styling — no surprises.</div>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon-wrap" aria-hidden="true">
+              <svg class="benefit-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.4 2 2 0 0 1 3.92 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="benefit-title">Always Reachable</div>
+              <div class="benefit-desc">A direct line to your project coordinator — before, during, and after.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOR DESIGNERS
+  ============================================================ -->
+  <section class="section designers-section" id="designers">
+    <div class="designers-bg" aria-hidden="true"></div>
+    <div class="container designers-layout">
+      <div class="designers-copy">
+        <p class="eyebrow eyebrow-light"><span class="eyebrow-line"></span>For Interior Designers</p>
+        <h2 class="section-title title-light">
+          Your Trusted<br />Delivery Partner
+        </h2>
+        <p class="section-sub sub-light">
+          Empyrean is built around the designer's workflow. We integrate
+          seamlessly with your project management, speak the language of
+          luxury furniture, and treat your clients' homes with the same
+          reverence you do.
+        </p>
+        <ul class="designers-list">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Priority scheduling and dedicated project coordinator
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Warehousing and receiving at our Manhattan-area facility
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Real-time delivery tracking and photo documentation
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Damage-claim handling and white-label client communications
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+            Net-30 billing and preferred designer pricing
+          </li>
+        </ul>
+        <a href="#quote" class="btn btn-gold">Become a Design Partner</a>
+      </div>
+      <div class="designers-visual" aria-hidden="true">
+        <div class="designers-photo-wrap">
+          <div class="designers-photo-main"></div>
+          <div class="designers-photo-accent">
+            <div class="designers-quote-mark">"</div>
+            <p class="designers-quote-text">
+              The only delivery team I trust with my clients' homes.
+            </p>
+            <div class="designers-quote-author">— Sophia Laurent, Laurent Interiors</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PORTFOLIO
+  ============================================================ -->
+  <section class="section portfolio-section" id="portfolio">
+    <div class="container portfolio-header">
+      <div>
+        <p class="eyebrow"><span class="eyebrow-line"></span>Selected Projects</p>
+        <h2 class="section-title">Delivered with Care</h2>
+      </div>
+      <a href="#contact" class="btn btn-outline-dark">View Full Portfolio</a>
+    </div>
+
+    <div class="portfolio-grid" role="list">
+      <article class="portfolio-item pi-large" role="listitem">
+        <div class="pi-photo pi-photo-1" aria-hidden="true">
+          <div class="pi-photo-light"></div>
+        </div>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <div class="pi-project">Tribeca Penthouse</div>
+            <div class="pi-detail">Full Furnishing Install &nbsp;·&nbsp; 2024</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item pi-tall" role="listitem">
+        <div class="pi-photo pi-photo-2" aria-hidden="true">
+          <div class="pi-photo-light"></div>
+        </div>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <div class="pi-project">Upper East Side Townhouse</div>
+            <div class="pi-detail">Art &amp; Accessories &nbsp;·&nbsp; 2024</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" role="listitem">
+        <div class="pi-photo pi-photo-3" aria-hidden="true">
+          <div class="pi-photo-light"></div>
+        </div>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <div class="pi-project">West Village Loft</div>
+            <div class="pi-detail">Designer Move-In &nbsp;·&nbsp; 2023</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" role="listitem">
+        <div class="pi-photo pi-photo-4" aria-hidden="true">
+          <div class="pi-photo-light"></div>
+        </div>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <div class="pi-project">Park Slope Residence</div>
+            <div class="pi-detail">Furniture Install &nbsp;·&nbsp; 2023</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" role="listitem">
+        <div class="pi-photo pi-photo-5" aria-hidden="true">
+          <div class="pi-photo-light"></div>
+        </div>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <div class="pi-project">SoHo Gallery Apartment</div>
+            <div class="pi-detail">White Glove Delivery &nbsp;·&nbsp; 2024</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="portfolio-item" role="listitem">
+        <div class="pi-photo pi-photo-6" aria-hidden="true">
+          <div class="pi-photo-light"></div>
+        </div>
+        <div class="pi-overlay">
+          <div class="pi-info">
+            <div class="pi-project">Chelsea Duplex</div>
+            <div class="pi-detail">Full Project Day &nbsp;·&nbsp; 2023</div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+  ============================================================ -->
+  <section class="testimonials-section" id="testimonials" aria-label="Client testimonials">
+    <div class="container">
+      <p class="eyebrow eyebrow-gold"><span class="eyebrow-line"></span>Client Stories</p>
+      <h2 class="section-title title-light">What Designers Say</h2>
+    </div>
+
+    <div class="testimonials-grid">
+      <blockquote class="testimonial-card" data-delay="0">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <p class="testimonial-text">
+          Empyrean is the only delivery team I trust with my clients' homes.
+          They treat every piece like it's priceless — because to my clients,
+          it is.
+        </p>
+        <footer class="testimonial-footer">
+          <div class="author-avatar" aria-hidden="true">SL</div>
+          <div>
+            <div class="author-name">Sophia Laurent</div>
+            <div class="author-studio">Laurent Interiors, NYC</div>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial-card" data-delay="80">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <p class="testimonial-text">
+          Three years and dozens of projects. Empyrean has never once let me
+          down. Their coordination on project day is simply unmatched in this
+          city.
+        </p>
+        <footer class="testimonial-footer">
+          <div class="author-avatar" aria-hidden="true">JM</div>
+          <div>
+            <div class="author-name">James Mercer</div>
+            <div class="author-studio">Mercer Design Studio</div>
+          </div>
+        </footer>
+      </blockquote>
+
+      <blockquote class="testimonial-card" data-delay="160">
+        <div class="quote-mark" aria-hidden="true">"</div>
+        <p class="testimonial-text">
+          The level of professionalism is extraordinary. My clients constantly
+          comment on how smooth and seamless the whole process feels. That's
+          Empyrean.
+        </p>
+        <footer class="testimonial-footer">
+          <div class="author-avatar" aria-hidden="true">AK</div>
+          <div>
+            <div class="author-name">Amara Kessler</div>
+            <div class="author-studio">AK Design Group</div>
+          </div>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BAND
+  ============================================================ -->
+  <section class="cta-band" id="quote" aria-label="Call to action">
+    <div class="container cta-inner">
+      <p class="eyebrow eyebrow-centered"><span class="eyebrow-line"></span>Ready to Work Together<span class="eyebrow-line"></span></p>
+      <h2 class="section-title cta-title">
+        Start Your Next Project<br />with Confidence
+      </h2>
+      <p class="section-sub cta-sub">
+        Tell us about your project and we'll respond within one business day
+        with a tailored quote.
+      </p>
+      <div class="cta-btns">
+        <a href="#contact" class="btn btn-navy">
+          Request a Quote
+          <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="tel:+12125551234" class="btn btn-outline-navy">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.4 2 2 0 0 1 3.92 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          (212) 555-1234
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" id="contact" role="contentinfo">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#home" class="nav-logo footer-logo" aria-label="Empyrean Services">EMPYREAN</a>
+        <p class="footer-desc">
+          NYC's premier white glove delivery and installation service for
+          interior designers, luxury furniture galleries, and high-end
+          residences.
+        </p>
+        <div class="footer-social" aria-label="Social media links">
+          <a href="#" class="social-btn" aria-label="Follow us on Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Follow us on LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="View our Houzz profile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L2 12h3v8h6v-5h2v5h6v-8h3L12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Services</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#services">White Glove Delivery</a></li>
+          <li><a href="#services">Furniture Installation</a></li>
+          <li><a href="#services">Art &amp; Accessory Handling</a></li>
+          <li><a href="#services">Designer Move-In</a></li>
+          <li><a href="#contact">Storage &amp; Receiving</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Company</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#designers">For Designers</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#contact">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3 class="footer-col-title">Contact</h3>
+        <address class="footer-address">
+          <div class="footer-contact-row">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>New York City<br />Serving all five boroughs &amp;<br />the Tri-State area</span>
+          </div>
+          <div class="footer-contact-row">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12 19.79 19.79 0 0 1 1.95 3.4 2 2 0 0 1 3.92 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.06-1.06a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+12125551234">(212) 555-1234</a>
+          </div>
+          <div class="footer-contact-row">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <a href="mailto:hello@empyreanservices.com">hello@empyreanservices.com</a>
+          </div>
+        </address>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Empyrean Services LLC. All rights reserved.</p>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Accessibility</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
