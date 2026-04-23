@@ -35,18 +35,37 @@ window.addEventListener('scroll', () => {
 });
 
 // Mobile menu toggle
-if (navHamburger) {
-  navHamburger.addEventListener('click', () => {
+if (navHamburger && navLinks) {
+  navHamburger.addEventListener('click', (e) => {
+    e.preventDefault();
     const isExpanded = navHamburger.getAttribute('aria-expanded') === 'true';
     navHamburger.setAttribute('aria-expanded', !isExpanded);
-    // Menu toggle logic can be expanded here
+
+    if (!isExpanded) {
+      navLinks.style.display = 'flex';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '100%';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.gap = '0';
+      navLinks.style.background = 'rgba(15, 31, 61, 0.98)';
+      navLinks.style.padding = '20px';
+      navLinks.style.backdropFilter = 'blur(20px)';
+      navLinks.style.justifyContent = 'flex-start';
+    } else {
+      navLinks.style.display = 'none';
+    }
   });
 }
 
 // Close mobile menu on link click
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
-    navHamburger?.setAttribute('aria-expanded', 'false');
+    if (navHamburger && navLinks) {
+      navHamburger.setAttribute('aria-expanded', 'false');
+      navLinks.style.display = 'none';
+    }
   });
 });
 
