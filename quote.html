@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request a Quote — Empyrean Services</title>
+  <meta name="description" content="Request a white glove delivery or installation quote from Empyrean Services. We serve NYC interior designers and luxury homes across the Tri-State area." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body { background: var(--off-white); }
+
+    .page-hero {
+      background: var(--navy);
+      padding: 140px 60px 80px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .page-hero { padding: 120px 20px 60px; }
+    }
+
+    .page-hero .eyebrow { justify-content: center; color: var(--gold); }
+    .page-hero .eyebrow .eyebrow-line { background: var(--gold); }
+    .page-hero h1 { color: var(--white); margin-bottom: 16px; font-size: clamp(36px, 4vw, 56px); }
+    .page-hero p { color: rgba(255,255,255,0.7); font-size: 17px; font-weight: 300; max-width: 520px; margin: 0 auto; }
+
+    .quote-section {
+      padding: 100px 20px;
+    }
+
+    .quote-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 64px;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.06);
+    }
+
+    @media (max-width: 768px) {
+      .quote-wrap { padding: 40px 24px; }
+      .quote-section { padding: 60px 20px; }
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .form-group label .req { color: var(--gold); margin-left: 2px; }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border-light);
+      background: var(--off-white);
+      font-family: var(--ff-sans);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      box-sizing: border-box;
+      border-radius: 0;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8a8a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      background: var(--white);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text-muted); font-weight: 300; }
+
+    .form-group textarea { resize: vertical; min-height: 140px; }
+
+    .form-divider {
+      grid-column: 1 / -1;
+      border: none;
+      border-top: 1px solid var(--border-light);
+      margin: 8px 0;
+    }
+
+    .form-title {
+      grid-column: 1 / -1;
+      font-family: var(--ff-serif);
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+      margin-top: 16px;
+    }
+
+    .form-submit {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .form-note {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .success-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .success-title {
+      font-family: var(--ff-serif);
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .success-sub {
+      font-size: 16px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 400px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar" class="scrolled" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Empyrean Services — Home">EMPYREAN SERVICES</a>
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#portfolio">Portfolio</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#designers">For Designers</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <a href="quote.html" class="btn-quote">Get a Quote</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <p class="eyebrow"><span class="eyebrow-line"></span>White Glove Service</p>
+    <h1>Request a Quote</h1>
+    <p>Tell us about your project. We respond within one business day with a tailored quote.</p>
+  </div>
+
+  <!-- FORM SECTION -->
+  <div class="quote-section">
+    <div class="quote-wrap">
+
+      <!-- Form -->
+      <form id="quoteForm" novalidate>
+        <div class="form-grid">
+
+          <div class="form-title">Your Information</div>
+
+          <div class="form-group">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" name="name" placeholder="Jane Smith" required />
+          </div>
+
+          <div class="form-group">
+            <label>Company / Studio</label>
+            <input type="text" name="company" placeholder="Smith Interiors LLC" />
+          </div>
+
+          <div class="form-group">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" name="email" placeholder="jane@smithinteriors.com" required />
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" name="phone" placeholder="(212) 000-0000" required />
+          </div>
+
+          <hr class="form-divider" />
+          <div class="form-title">Project Details</div>
+
+          <div class="form-group">
+            <label>Service Needed <span class="req">*</span></label>
+            <select name="service" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option value="white-glove-delivery">White Glove Delivery</option>
+              <option value="furniture-installation">Furniture Installation</option>
+              <option value="art-accessory-handling">Art &amp; Accessory Handling</option>
+              <option value="designer-move-in">Designer Move-In Services</option>
+              <option value="storage-receiving">Storage &amp; Receiving</option>
+              <option value="multiple">Multiple Services</option>
+              <option value="other">Other / Not Sure</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Preferred Date / Timeline</label>
+            <input type="text" name="date" placeholder="e.g. Mid-March 2026" />
+          </div>
+
+          <div class="form-group full">
+            <label>Delivery / Project Address</label>
+            <input type="text" name="address" placeholder="123 Park Ave, New York, NY 10017" />
+          </div>
+
+          <div class="form-group full">
+            <label>Project Description <span class="req">*</span></label>
+            <textarea name="description" placeholder="Describe the items to be delivered or installed, any access restrictions, building details, floor level, etc." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Approximate Budget</label>
+            <select name="budget">
+              <option value="" disabled selected>Select a range…</option>
+              <option value="under-500">Under $500</option>
+              <option value="500-1000">$500 – $1,000</option>
+              <option value="1000-2500">$1,000 – $2,500</option>
+              <option value="2500-5000">$2,500 – $5,000</option>
+              <option value="5000-plus">$5,000+</option>
+              <option value="unsure">Not Sure</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>How Did You Hear About Us?</label>
+            <select name="referral">
+              <option value="" disabled selected>Select…</option>
+              <option value="referral">Designer / Colleague Referral</option>
+              <option value="instagram">Instagram</option>
+              <option value="google">Google Search</option>
+              <option value="houzz">Houzz</option>
+              <option value="linkedin">LinkedIn</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn btn-navy">
+              Submit Request
+              <svg class="btn-arrow" viewBox="0 0 24 24" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+            <p class="form-note">We'll respond within 1 business day.</p>
+          </div>
+
+        </div>
+      </form>
+
+      <!-- Success Message (hidden until submit) -->
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="success-title">Quote Request Sent!</div>
+        <p class="success-sub">Thank you. A member of our team will be in touch within one business day to discuss your project.</p>
+        <a href="index.html" class="btn btn-navy">Back to Home</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER MINI -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+      <p class="footer-copy">© 2026 Empyrean Services LLC. All rights reserved.</p>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Quote form submission
+    const quoteForm = document.getElementById('quoteForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    quoteForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const required = quoteForm.querySelectorAll('[required]');
+      let valid = true;
+
+      required.forEach(field => {
+        field.style.borderColor = '';
+        if (!field.value.trim()) {
+          field.style.borderColor = '#c0392b';
+          valid = false;
+        }
+      });
+
+      if (!valid) {
+        const first = quoteForm.querySelector('[required]:not([value])');
+        quoteForm.querySelector('[style*="c0392b"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      // Show success
+      quoteForm.style.display = 'none';
+      formSuccess.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
