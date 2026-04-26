@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <!-- Transparent background — no fill rect -->
+
+  <!-- Outer circle -->
+  <circle cx="250" cy="250" r="228" fill="none" stroke="#000000" stroke-width="4.5"/>
+  <!-- Inner circle (slightly thinner gap) -->
+  <circle cx="250" cy="250" r="218" fill="none" stroke="#000000" stroke-width="2"/>
+
+  <!-- Warehouse / building outline (upper center) -->
+  <!-- Gabled roof -->
+  <polyline
+    points="185,178 250,118 315,178"
+    fill="none"
+    stroke="#000000"
+    stroke-width="5"
+    stroke-linecap="square"
+    stroke-linejoin="miter"
+  />
+  <!-- Left wall (partial — open at base, truck exits) -->
+  <line x1="185" y1="178" x2="185" y2="218" stroke="#000000" stroke-width="5" stroke-linecap="square"/>
+  <!-- Right wall -->
+  <line x1="315" y1="178" x2="315" y2="218" stroke="#000000" stroke-width="5" stroke-linecap="square"/>
+
+  <!-- Box truck silhouette (solid black) -->
+  <!-- Cargo body -->
+  <rect x="196" y="186" width="80" height="44" fill="#000000" rx="1"/>
+  <!-- Cab -->
+  <rect x="276" y="196" width="30" height="34" fill="#000000" rx="2"/>
+  <!-- Front bumper step -->
+  <rect x="302" y="218" width="6" height="5" fill="#000000"/>
+  <!-- Wheels -->
+  <circle cx="216" cy="233" r="9" fill="#000000"/>
+  <circle cx="279" cy="233" r="9" fill="#000000"/>
+  <!-- Wheel wells (cut from cab/body overlap) -->
+  <circle cx="216" cy="233" r="5" fill="white"/>
+  <circle cx="279" cy="233" r="5" fill="white"/>
+
+  <!-- EMPYREAN — large, wide-tracked serif -->
+  <text
+    x="250"
+    y="305"
+    font-family="'Georgia', 'Times New Roman', 'Palatino', serif"
+    font-size="58"
+    font-weight="400"
+    letter-spacing="9"
+    text-anchor="middle"
+    fill="#000000"
+  >EMPYREAN</text>
+
+  <!-- Thin decorative lines flanking SERVICES INC -->
+  <line x1="118" y1="326" x2="175" y2="326" stroke="#000000" stroke-width="1.2"/>
+  <line x1="325" y1="326" x2="382" y2="326" stroke="#000000" stroke-width="1.2"/>
+
+  <!-- SERVICES INC — smaller, widely spaced sans -->
+  <text
+    x="250"
+    y="334"
+    font-family="'Arial', 'Helvetica Neue', 'Helvetica', sans-serif"
+    font-size="19"
+    font-weight="300"
+    letter-spacing="8"
+    text-anchor="middle"
+    fill="#000000"
+  >SERVICES INC</text>
+</svg>
