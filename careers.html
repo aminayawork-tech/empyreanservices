@@ -704,6 +704,8 @@
       }
     });
 
+    const CONTACT_EMAIL = 'Manuel@empyreanservices.com';
+
     // Application form submission
     const applyForm = document.getElementById('applyForm');
     const applySuccess = document.getElementById('applySuccess');
@@ -711,6 +713,7 @@
     applyForm?.addEventListener('submit', function(e) {
       e.preventDefault();
 
+      // Validate required fields
       const required = applyForm.querySelectorAll('[required]');
       let valid = true;
 
@@ -730,9 +733,55 @@
         return;
       }
 
-      applyForm.style.display = 'none';
-      applySuccess.style.display = 'block';
-      document.getElementById('apply-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Build email from form data
+      const data = new FormData(applyForm);
+      const name         = data.get('name')         || '';
+      const phone        = data.get('phone')        || '';
+      const email        = data.get('email')        || '';
+      const location     = data.get('location')     || '';
+      const position     = data.get('position')     || '';
+      const experience   = data.get('experience')   || '';
+      const license      = data.get('license')      || '';
+      const bio          = data.get('bio')          || '';
+      const availability = data.get('availability') || '';
+
+      const subject = encodeURIComponent(
+        `Job Application — ${position} — ${name}`
+      );
+
+      const body = encodeURIComponent(
+`Job Application — Empyrean Services
+=====================================
+
+APPLICANT INFORMATION
+---------------------
+Name:         ${name}
+Phone:        ${phone}
+Email:        ${email}
+Location:     ${location || '—'}
+
+POSITION & EXPERIENCE
+---------------------
+Position:     ${position}
+Experience:   ${experience || '—'}
+License Type: ${license || '—'}
+Availability: ${availability || '—'}
+
+ABOUT THE APPLICANT
+-------------------
+${bio}
+`
+      );
+
+      // Open email client with pre-filled content
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+      // Show success state
+      setTimeout(() => {
+        applyForm.style.display = 'none';
+        applySuccess.style.display = 'block';
+        document.getElementById('apply-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
     });
   </script>
 </body>

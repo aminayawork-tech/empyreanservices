@@ -339,13 +339,15 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Quote form submission
+    const CONTACT_EMAIL = 'Manuel@empyreanservices.com';
+
     const quoteForm = document.getElementById('quoteForm');
     const formSuccess = document.getElementById('formSuccess');
 
     quoteForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
+      // Validate required fields
       const required = quoteForm.querySelectorAll('[required]');
       let valid = true;
 
@@ -358,15 +360,61 @@
       });
 
       if (!valid) {
-        const first = quoteForm.querySelector('[required]:not([value])');
         quoteForm.querySelector('[style*="c0392b"]')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         return;
       }
 
-      // Show success
-      quoteForm.style.display = 'none';
-      formSuccess.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Build email from form data
+      const data = new FormData(quoteForm);
+      const name    = data.get('name')    || '';
+      const company = data.get('company') || '';
+      const email   = data.get('email')   || '';
+      const phone   = data.get('phone')   || '';
+      const service = data.get('service') || '';
+      const date    = data.get('date')    || '';
+      const address = data.get('address') || '';
+      const desc    = data.get('description') || '';
+      const budget  = data.get('budget')  || '';
+      const ref     = data.get('referral')|| '';
+
+      const subject = encodeURIComponent(
+        `Quote Request — ${name}${company ? ' / ' + company : ''}`
+      );
+
+      const body = encodeURIComponent(
+`New Quote Request — Empyrean Services
+=======================================
+
+CLIENT INFORMATION
+------------------
+Name:     ${name}
+Company:  ${company || '—'}
+Email:    ${email}
+Phone:    ${phone}
+
+PROJECT DETAILS
+---------------
+Service:       ${service}
+Preferred Date:${date || '—'}
+Address:       ${address || '—'}
+Budget:        ${budget || '—'}
+Referral:      ${ref || '—'}
+
+PROJECT DESCRIPTION
+-------------------
+${desc}
+`
+      );
+
+      // Open email client with pre-filled content
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+      // Show success state
+      setTimeout(() => {
+        quoteForm.style.display = 'none';
+        formSuccess.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 300);
     });
   </script>
 </body>
