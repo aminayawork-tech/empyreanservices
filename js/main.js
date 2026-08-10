@@ -348,3 +348,90 @@ if ('PerformanceObserver' in window) {
     // LongTask API not supported
   }
 }
+
+// ============================================================
+// PORTFOLIO LIGHTBOX
+// ============================================================
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+let currentImageIndex = 0;
+let portfolioImages = [];
+
+// Extract background image URLs from portfolio items
+portfolioItems.forEach((item, index) => {
+  const piPhoto = item.querySelector('.pi-photo');
+  if (piPhoto) {
+    const bgImage = window.getComputedStyle(piPhoto).backgroundImage;
+    if (bgImage && bgImage !== 'none') {
+      const url = bgImage.replace(/url\(['"]?(.+?)['"]?\)/g, '$1');
+      portfolioImages.push(url);
+    }
+  }
+});
+
+// Open lightbox
+portfolioItems.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    const piPhoto = item.querySelector('.pi-photo');
+    if (piPhoto) {
+      const bgImage = window.getComputedStyle(piPhoto).backgroundImage;
+      if (bgImage && bgImage !== 'none') {
+        const url = bgImage.replace(/url\(['"]?(.+?)['"]?\)/g, '$1');
+        currentImageIndex = portfolioImages.indexOf(url);
+        displayLightboxImage(currentImageIndex);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+  });
+});
+
+// Close lightbox
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') showPrevImage();
+  if (e.key === 'ArrowRight') showNextImage();
+});
+
+// Navigation buttons
+lightboxPrev.addEventListener('click', showPrevImage);
+lightboxNext.addEventListener('click', showNextImage);
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = 'auto';
+}
+
+function displayLightboxImage(index) {
+  if (index >= 0 && index < portfolioImages.length) {
+    lightboxImage.src = portfolioImages[index];
+    currentImageIndex = index;
+  }
+}
+
+function showPrevImage() {
+  let newIndex = currentImageIndex - 1;
+  if (newIndex < 0) newIndex = portfolioImages.length - 1;
+  displayLightboxImage(newIndex);
+}
+
+function showNextImage() {
+  let newIndex = currentImageIndex + 1;
+  if (newIndex >= portfolioImages.length) newIndex = 0;
+  displayLightboxImage(newIndex);
+}
