@@ -829,6 +829,9 @@ button {
   transition: all var(--transition-smooth);
   cursor: default;
   animation: fadeUp 0.7s ease backwards;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 }
 
 .service-card[data-delay] {
@@ -836,20 +839,27 @@ button {
 }
 
 .service-card:hover {
-  background: var(--navy);
+  background-color: var(--navy);
 }
 
 .service-card-inner {
   padding: 52px 40px;
+  background: rgba(15, 31, 61, 0.5);
+  transition: background var(--transition-smooth);
+}
+
+.service-card:hover .service-card-inner {
+  background: rgba(15, 31, 61, 0.8);
 }
 
 .service-card:hover .service-title,
 .service-card:hover .service-desc {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .service-card:hover .service-icon-wrap {
-  border-color: rgba(184, 151, 90, 0.5);
+  border-color: rgba(184, 151, 90, 0.6);
+  background: rgba(184, 151, 90, 0.1);
 }
 
 .service-card:hover .service-icon {
@@ -857,14 +867,14 @@ button {
 }
 
 .service-card:hover .service-num {
-  color: rgba(184, 151, 90, 0.3);
+  color: rgba(184, 151, 90, 0.4);
 }
 
 .service-num {
   font-family: var(--ff-serif);
   font-size: 48px;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.06);
+  color: rgba(255, 255, 255, 0.15);
   line-height: 1;
   margin-bottom: 32px;
   transition: color var(--transition-smooth);
@@ -873,18 +883,18 @@ button {
 .service-icon-wrap {
   width: 52px;
   height: 52px;
-  border: 1px solid var(--border-light);
+  border: 1px solid rgba(184, 151, 90, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 28px;
-  transition: border-color var(--transition-smooth);
+  transition: border-color var(--transition-smooth), background var(--transition-smooth);
 }
 
 .service-icon {
   width: 24px;
   height: 24px;
-  stroke: var(--navy);
+  stroke: var(--gold);
   fill: none;
   stroke-width: 1.5;
   stroke-linecap: round;
@@ -896,7 +906,7 @@ button {
   font-family: var(--ff-serif);
   font-size: 22px;
   font-weight: 500;
-  color: var(--charcoal);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 14px;
   line-height: 1.3;
   transition: color var(--transition-smooth);
@@ -904,9 +914,9 @@ button {
 
 .service-desc {
   font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 300;
   line-height: 1.75;
-  color: var(--text-secondary);
   transition: color var(--transition-smooth);
 }
 
@@ -1382,27 +1392,27 @@ button {
 }
 
 .pi-photo-1 {
-  background: linear-gradient(160deg, #2a3540 0%, #1e2830 40%, #141e28 100%);
+  background: url('../assets/images/delivery/IMG_2470.jpeg') center/cover no-repeat;
 }
 
 .pi-photo-2 {
-  background: linear-gradient(135deg, #3a3228 0%, #2a2418 50%, #1e1a10 100%);
+  background: url('../assets/images/storage/IMG_1734.jpeg') center/cover no-repeat;
 }
 
 .pi-photo-3 {
-  background: linear-gradient(160deg, #2a2a32 0%, #1e1e28 50%, #141420 100%);
+  background: url('../assets/images/storage/IMG_0597.jpg') center/cover no-repeat;
 }
 
 .pi-photo-4 {
-  background: linear-gradient(135deg, #3a3a30 0%, #2a2a20 100%);
+  background: url('../assets/images/assemble/Before.jpeg') center/cover no-repeat;
 }
 
 .pi-photo-5 {
-  background: linear-gradient(160deg, #283038 0%, #1c2430 100%);
+  background: url('../assets/images/delivery/IMG_3108.jpeg') center/cover no-repeat;
 }
 
 .pi-photo-6 {
-  background: linear-gradient(135deg, #302828 0%, #201818 100%);
+  background: url('../assets/images/storage/IMG_2494.jpeg') center/cover no-repeat;
 }
 
 .pi-photo-light {
