@@ -350,148 +350,106 @@ if ('PerformanceObserver' in window) {
 }
 
 // ============================================================
-// PORTFOLIO LIGHTBOX - IMPROVED
+// PORTFOLIO LIGHTBOX - WORKING VERSION
 // ============================================================
 
-const lightbox = document.getElementById('lightbox');
-const lightboxImage = document.getElementById('lightboxImage');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
+(function() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightboxImage');
+  const lightboxClose = document.getElementById('lightboxClose');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-let currentIndex = 0;
-let allImages = [];
+  let images = [];
+  let currentIndex = 0;
 
-// Extract all background images from portfolio items
-function getBackgroundImageUrl(element) {
-  const piPhoto = element.querySelector('.pi-photo');
-  if (!piPhoto) return null;
+  // Extract image URL from portfolio item
+  function extractImageUrl(item) {
+    const piPhoto = item.querySelector('.pi-photo');
+    if (!piPhoto) return null;
 
-  // Try inline style
-  const inlineStyle = piPhoto.getAttribute('style');
-  if (inlineStyle && inlineStyle.includes('background')) {
-    const match = inlineStyle.match(/background.*?url\(['"]?(.+?)['"]?\)/);
-    if (match) return match[1];
+    const style = piPhoto.getAttribute('style') || '';
+    const match = style.match(/url\(['"]?([^'")]+)['"]?\)/);
+    return match ? match[1] : null;
   }
 
-  // Try computed style
-  const computed = window.getComputedStyle(piPhoto);
-  const bgImage = computed.backgroundImage;
-  if (bgImage && bgImage !== 'none') {
-    const match = bgImage.match(/url\(['"]?(.+?)['"]?\)/);
-    if (match) return match[1];
-  }
-
-  return null;
-}
-
-// Build array of all images
-portfolioItems.forEach((item) => {
-  const url = getBackgroundImageUrl(item);
-  if (url) {
-    allImages.push({ element: item, url: url });
-  }
-});
-
-log(`Portfolio: Found ${allImages.length} images`, 'info');
-
-// Add click handler to each portfolio item
-portfolioItems.forEach((item, index) => {
-  item.style.cursor = 'pointer';
-
-  item.addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const url = getBackgroundImageUrl(this);
+  // Build images array
+  portfolioItems.forEach((item) => {
+    const url = extractImageUrl(item);
     if (url) {
-      currentIndex = allImages.findIndex(img => img.url === url);
-      openLightbox(currentIndex);
-    }
-  }, false);
-});
-
-// Lightbox functions
-function openLightbox(index) {
-  if (!lightbox || !allImages[index]) return;
-
-  currentIndex = index;
-  lightboxImage.src = allImages[index].url;
-  lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden';
-  document.body.style.position = 'fixed';
-  document.body.style.width = '100%';
-}
-
-function closeLightbox() {
-  if (!lightbox) return;
-
-  lightbox.classList.remove('active');
-  document.body.style.overflow = 'auto';
-  document.body.style.position = 'static';
-  lightboxImage.src = '';
-}
-
-function nextImage() {
-  currentIndex = (currentIndex + 1) % allImages.length;
-  lightboxImage.src = allImages[currentIndex].url;
-}
-
-function prevImage() {
-  currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
-  lightboxImage.src = allImages[currentIndex].url;
-}
-
-// Close button
-if (lightboxClose) {
-  lightboxClose.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    closeLightbox();
-  });
-}
-
-// Next/Prev buttons
-if (lightboxNext) {
-  lightboxNext.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    nextImage();
-  });
-}
-
-if (lightboxPrev) {
-  lightboxPrev.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    prevImage();
-  });
-}
-
-// Click outside to close
-if (lightbox) {
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      e.preventDefault();
-      e.stopPropagation();
-      closeLightbox();
+      images.push(url);
     }
   });
-}
 
-// Keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-  if (!lightbox.classList.contains('active')) return;
+  console.log('✓ Lightbox: Loaded', images.length, 'images');
 
-  if (e.key === 'Escape') {
-    e.preventDefault();
-    closeLightbox();
-  } else if (e.key === 'ArrowRight') {
-    e.preventDefault();
-    nextImage();
-  } else if (e.key === 'ArrowLeft') {
-    e.preventDefault();
-    prevImage();
+  // Open lightbox
+  function open(index) {
+    if (index < 0 || index >= images.length) return;
+
+    currentIndex = index;
+    lightboxImage.src = images[index];
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
-}, true);
+
+  // Close lightbox
+  function close() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Next image
+  function next() {
+    open((currentIndex + 1) % images.length);
+  }
+
+  // Previous image
+  function prev() {
+    open((currentIndex - 1 + images.length) % images.length);
+  }
+
+  // Portfolio item click handler
+  portfolioItems.forEach((item) => {
+    item.addEventListener('click', (e) => {
+      const url = extractImageUrl(item);
+      const index = images.indexOf(url);
+      if (index >= 0) {
+        open(index);
+      }
+    });
+  });
+
+  // Close button
+  if (lightboxClose) {
+    lightboxClose.addEventListener('click', close);
+  }
+
+  // Navigation buttons
+  if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', prev);
+  }
+
+  if (lightboxNext) {
+    lightboxNext.addEventListener('click', next);
+  }
+
+  // Click backdrop to close
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        close();
+      }
+    });
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') prev();
+    if (e.key === 'ArrowRight') next();
+  });
+})();
