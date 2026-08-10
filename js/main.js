@@ -363,62 +363,107 @@ const portfolioItems = document.querySelectorAll('.portfolio-item');
 let currentImageIndex = 0;
 let portfolioImages = [];
 
-// Extract background image URLs from portfolio items
-portfolioItems.forEach((item, index) => {
-  const piPhoto = item.querySelector('.pi-photo');
-  if (piPhoto) {
-    const bgImage = window.getComputedStyle(piPhoto).backgroundImage;
-    if (bgImage && bgImage !== 'none') {
-      const url = bgImage.replace(/url\(['"]?(.+?)['"]?\)/g, '$1');
-      portfolioImages.push(url);
+// Extract image URLs from portfolio items
+function extractImageUrl(element) {
+  // Try inline style first
+  let bgImage = element.style.backgroundImage;
+  if (!bgImage) {
+    // Try pi-photo element
+    const piPhoto = element.querySelector('.pi-photo');
+    if (piPhoto) {
+      bgImage = piPhoto.style.backgroundImage || window.getComputedStyle(piPhoto).backgroundImage;
     }
+  }
+
+  if (bgImage && bgImage !== 'none') {
+    const url = bgImage.replace(/url\(['"]?(.+?)['"]?\)/g, '$1');
+    return url;
+  }
+  return null;
+}
+
+// Build array of all portfolio images
+portfolioItems.forEach((item) => {
+  const url = extractImageUrl(item);
+  if (url) {
+    portfolioImages.push(url);
   }
 });
 
-// Open lightbox
-portfolioItems.forEach((item, index) => {
-  item.addEventListener('click', () => {
-    const piPhoto = item.querySelector('.pi-photo');
-    if (piPhoto) {
-      const bgImage = window.getComputedStyle(piPhoto).backgroundImage;
-      if (bgImage && bgImage !== 'none') {
-        const url = bgImage.replace(/url\(['"]?(.+?)['"]?\)/g, '$1');
-        currentImageIndex = portfolioImages.indexOf(url);
-        displayLightboxImage(currentImageIndex);
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
+// Open lightbox on click
+portfolioItems.forEach((item) => {
+  item.addEventListener('click', (e) => {
+    // Prevent default behavior
+    e.preventDefault();
+
+    const url = extractImageUrl(item);
+    if (url) {
+      currentImageIndex = portfolioImages.indexOf(url);
+      displayLightboxImage(currentImageIndex);
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
   });
 });
 
-// Close lightbox
-lightboxClose.addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
+// Close lightbox on close button
+if (lightboxClose) {
+  lightboxClose.addEventListener('click', (e) => {
+    e.stopPropagation();
     closeLightbox();
-  }
-});
+  });
+}
+
+// Close lightbox when clicking outside image
+if (lightbox) {
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+      closeLightbox();
+    }
+  });
+}
 
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
-  if (!lightbox.classList.contains('active')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') showPrevImage();
-  if (e.key === 'ArrowRight') showNextImage();
+  if (!lightbox || !lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') {
+    e.preventDefault();
+    closeLightbox();
+  }
+  if (e.key === 'ArrowLeft') {
+    e.preventDefault();
+    showPrevImage();
+  }
+  if (e.key === 'ArrowRight') {
+    e.preventDefault();
+    showNextImage();
+  }
 });
 
 // Navigation buttons
-lightboxPrev.addEventListener('click', showPrevImage);
-lightboxNext.addEventListener('click', showNextImage);
+if (lightboxPrev) {
+  lightboxPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showPrevImage();
+  });
+}
+
+if (lightboxNext) {
+  lightboxNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    showNextImage();
+  });
+}
 
 function closeLightbox() {
-  lightbox.classList.remove('active');
-  document.body.style.overflow = 'auto';
+  if (lightbox) {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
 }
 
 function displayLightboxImage(index) {
-  if (index >= 0 && index < portfolioImages.length) {
+  if (index >= 0 && index < portfolioImages.length && lightboxImage) {
     lightboxImage.src = portfolioImages[index];
     currentImageIndex = index;
   }
