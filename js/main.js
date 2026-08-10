@@ -350,7 +350,7 @@ if ('PerformanceObserver' in window) {
 }
 
 // ============================================================
-// PORTFOLIO LIGHTBOX
+// PORTFOLIO LIGHTBOX - IMPROVED
 // ============================================================
 
 const lightbox = document.getElementById('lightbox');
@@ -360,123 +360,138 @@ const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-let currentImageIndex = 0;
-let portfolioImages = [];
+let currentIndex = 0;
+let allImages = [];
 
-// Extract image URLs from portfolio items
-function extractImageUrl(element) {
-  // Try inline style first
-  let bgImage = element.style.backgroundImage;
-  if (!bgImage) {
-    // Try pi-photo element
-    const piPhoto = element.querySelector('.pi-photo');
-    if (piPhoto) {
-      bgImage = piPhoto.style.backgroundImage || window.getComputedStyle(piPhoto).backgroundImage;
-    }
+// Extract all background images from portfolio items
+function getBackgroundImageUrl(element) {
+  const piPhoto = element.querySelector('.pi-photo');
+  if (!piPhoto) return null;
+
+  // Try inline style
+  const inlineStyle = piPhoto.getAttribute('style');
+  if (inlineStyle && inlineStyle.includes('background')) {
+    const match = inlineStyle.match(/background.*?url\(['"]?(.+?)['"]?\)/);
+    if (match) return match[1];
   }
 
+  // Try computed style
+  const computed = window.getComputedStyle(piPhoto);
+  const bgImage = computed.backgroundImage;
   if (bgImage && bgImage !== 'none') {
-    const url = bgImage.replace(/url\(['"]?(.+?)['"]?\)/g, '$1');
-    return url;
+    const match = bgImage.match(/url\(['"]?(.+?)['"]?\)/);
+    if (match) return match[1];
   }
+
   return null;
 }
 
-// Build array of all portfolio images
+// Build array of all images
 portfolioItems.forEach((item) => {
-  const url = extractImageUrl(item);
+  const url = getBackgroundImageUrl(item);
   if (url) {
-    portfolioImages.push(url);
+    allImages.push({ element: item, url: url });
   }
 });
 
-// Open lightbox on click
-portfolioItems.forEach((item) => {
-  item.addEventListener('click', (e) => {
-    // Prevent default behavior
-    e.preventDefault();
+log(`Portfolio: Found ${allImages.length} images`, 'info');
 
-    const url = extractImageUrl(item);
+// Add click handler to each portfolio item
+portfolioItems.forEach((item, index) => {
+  item.style.cursor = 'pointer';
+
+  item.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const url = getBackgroundImageUrl(this);
     if (url) {
-      currentImageIndex = portfolioImages.indexOf(url);
-      displayLightboxImage(currentImageIndex);
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
+      currentIndex = allImages.findIndex(img => img.url === url);
+      openLightbox(currentIndex);
     }
-  });
+  }, false);
 });
 
-// Close lightbox on close button
+// Lightbox functions
+function openLightbox(index) {
+  if (!lightbox || !allImages[index]) return;
+
+  currentIndex = index;
+  lightboxImage.src = allImages[index].url;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.body.style.position = 'fixed';
+  document.body.style.width = '100%';
+}
+
+function closeLightbox() {
+  if (!lightbox) return;
+
+  lightbox.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  document.body.style.position = 'static';
+  lightboxImage.src = '';
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % allImages.length;
+  lightboxImage.src = allImages[currentIndex].url;
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + allImages.length) % allImages.length;
+  lightboxImage.src = allImages[currentIndex].url;
+}
+
+// Close button
 if (lightboxClose) {
   lightboxClose.addEventListener('click', (e) => {
+    e.preventDefault();
     e.stopPropagation();
     closeLightbox();
   });
 }
 
-// Close lightbox when clicking outside image
+// Next/Prev buttons
+if (lightboxNext) {
+  lightboxNext.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    nextImage();
+  });
+}
+
+if (lightboxPrev) {
+  lightboxPrev.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    prevImage();
+  });
+}
+
+// Click outside to close
 if (lightbox) {
   lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+    if (e.target === lightbox) {
+      e.preventDefault();
+      e.stopPropagation();
       closeLightbox();
     }
   });
 }
 
-// Keyboard navigation
+// Keyboard shortcuts
 document.addEventListener('keydown', (e) => {
-  if (!lightbox || !lightbox.classList.contains('active')) return;
+  if (!lightbox.classList.contains('active')) return;
+
   if (e.key === 'Escape') {
     e.preventDefault();
     closeLightbox();
-  }
-  if (e.key === 'ArrowLeft') {
+  } else if (e.key === 'ArrowRight') {
     e.preventDefault();
-    showPrevImage();
-  }
-  if (e.key === 'ArrowRight') {
+    nextImage();
+  } else if (e.key === 'ArrowLeft') {
     e.preventDefault();
-    showNextImage();
+    prevImage();
   }
-});
-
-// Navigation buttons
-if (lightboxPrev) {
-  lightboxPrev.addEventListener('click', (e) => {
-    e.stopPropagation();
-    showPrevImage();
-  });
-}
-
-if (lightboxNext) {
-  lightboxNext.addEventListener('click', (e) => {
-    e.stopPropagation();
-    showNextImage();
-  });
-}
-
-function closeLightbox() {
-  if (lightbox) {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-}
-
-function displayLightboxImage(index) {
-  if (index >= 0 && index < portfolioImages.length && lightboxImage) {
-    lightboxImage.src = portfolioImages[index];
-    currentImageIndex = index;
-  }
-}
-
-function showPrevImage() {
-  let newIndex = currentImageIndex - 1;
-  if (newIndex < 0) newIndex = portfolioImages.length - 1;
-  displayLightboxImage(newIndex);
-}
-
-function showNextImage() {
-  let newIndex = currentImageIndex + 1;
-  if (newIndex >= portfolioImages.length) newIndex = 0;
-  displayLightboxImage(newIndex);
-}
+}, true);
